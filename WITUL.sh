@@ -13,9 +13,6 @@ if [ "" = "$PKG_OK" ]; then
             ;;
     esac
 else
-echo start formating the target drive
-sudo mkfs -t exfat /dev/sda
-echo done formating the target drive
 echo the ISO file has to be in your download folder
 username="USER INPUT"
 winisoname="USER INPUT"
@@ -28,6 +25,9 @@ wget https://github.com/WoeUSB/WoeUSB/releases/download/v5.2.4/woeusb-5.2.4.bash
 echo downloading WoeUSB done
 read -p "Enter name of the windows iso: " winisoname
 read -p "Enter path of the usb stick: " extmedname
+echo start formating the target drive
+sudo mkfs -t exfat $extmedname
+echo done formating the target drive
 sudo bash /home/$username/Downloads/woeusb-5.2.4.bash --device /home/$username/Downloads/$winisoname $extmedname
 fi
 
